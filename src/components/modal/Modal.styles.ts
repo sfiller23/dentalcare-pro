@@ -1,0 +1,1 @@
+const StyledModal = styled.div;
