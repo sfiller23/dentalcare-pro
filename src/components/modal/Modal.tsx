@@ -1,21 +1,37 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { Button } from "../button/Button";
+import { StyledModal } from "./Modal.styles";
 
-interface ModalProps {
+type ModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
   children: ReactNode;
-}
+};
 
 const Modal = (props: ModalProps) => {
-  const { children } = props;
-  const modalRoot = document.getElementById("modal"); // Target the #modal div in index.html
+  const { children, isOpen, onClose } = props;
+  const modalRoot = document.getElementById("modal");
 
-  if (!modalRoot) {
-    return null; // Ensure the target exists
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  if (!modalRoot || !isOpen) {
+    return null;
   }
 
   return ReactDOM.createPortal(
-    children, // Content to render
-    modalRoot // DOM node to render into
+    <StyledModal role="dialog" aria-modal="true">
+      {children}
+      <Button onClick={onClose}>Close</Button>
+    </StyledModal>,
+    modalRoot
   );
 };
 
