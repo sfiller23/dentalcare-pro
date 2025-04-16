@@ -3,7 +3,7 @@ import {
   fetchMe,
   login as loginRequest,
   logout as logoutRequest,
-  register as registerRequest,
+  signUp as registerRequest,
   User,
 } from "../services/auth.service";
 
@@ -13,7 +13,7 @@ interface AuthContextType {
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  signUp: (email: string, password: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -27,8 +27,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const init = async () => {
     try {
       setIsLoading(true);
-      const user = await fetchMe();
-      setUser(user);
+      const currentUser = await fetchMe();
+      console.log(currentUser);
+      setUser(currentUser);
     } catch {
       setUser(null);
     } finally {
@@ -40,7 +41,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     init();
   }, []);
 
-  const register = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string) => {
     await registerRequest({ email, password });
   };
 
@@ -62,7 +63,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         isLoading,
         login,
         logout,
-        register,
+        signUp,
       }}
     >
       {children}

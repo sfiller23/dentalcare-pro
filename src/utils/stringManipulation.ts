@@ -1,0 +1,7 @@
+export const capitalizeFirstChar = (str: string): string => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+export const trimUnderscore = (str: string): string => {
+  return str.replace("_", " ");
+};

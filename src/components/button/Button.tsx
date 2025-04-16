@@ -1,16 +1,13 @@
 import { ButtonHTMLAttributes } from "react";
-import { ButtonSizes, Variant } from "../../types/themeTypes";
-import { StyledButton } from "./Button.styles";
+import { StyledButton, StyledButtonProps } from "./Button.styles";
 
-type ButtonProps = {
-  variant?: Variant;
-  size?: ButtonSizes;
+type ButtonProps = StyledButtonProps & {
   children: React.ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
   variant = "primary",
-  size = "medium",
+  size = "md",
   children,
   ...rest
 }: ButtonProps) => {

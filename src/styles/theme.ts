@@ -1,4 +1,6 @@
-export const theme = {
+import { Theme } from "../types/themeTypes";
+
+export const theme: Theme = {
   colors: {
     primary: "#306CFE", // כחול עיקרי (כפתור "Create Appointment")
     secondary: "#F5F7FA", // רקע בהיר כללי
@@ -13,26 +15,27 @@ export const theme = {
     sidebarBg: "#F9FAFB", // רקע הסיידבר
     icon: "#A0AEC0",
   },
-  spacing: (factor: number) => `${factor * 4}px`,
+  spacing: (factor: number) => `${factor * 1.2}rem`,
   borderRadius: {
     sm: "4px",
     md: "8px",
     lg: "16px",
   },
   fontSizes: {
-    small: "0.875rem",
-    medium: "1rem",
-    large: "1.25rem",
-    xlarge: "1.5rem",
+    info: "0.875rem",
+    label: "1rem",
+    subtitle: "1.25rem",
+    title: "1.5rem",
+  },
+  fontWeights: {
+    info: 100,
+    label: 400,
+    subtitle: 400,
+    title: 700,
   },
   buttonSizes: {
-    small: "3rem",
-    medium: "5rem",
-    large: "7rem",
-  },
-  loaderSizes: {
-    small: "2rem",
-    medium: "5rem",
-    large: "8rem",
+    sm: "3rem",
+    md: "5rem",
+    lg: "7rem",
   },
 };
