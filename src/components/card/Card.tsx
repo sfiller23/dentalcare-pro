@@ -1,16 +1,32 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, PropsWithChildren } from "react";
 import { StyledCard } from "./Card.styles";
 
 type CardProps = {
   fullWidth?: boolean;
-  children: ReactNode;
+  hoverEffect?: boolean;
+  clickable?: boolean;
+  shadow?: boolean;
+  spacing?: number;
 } & HTMLAttributes<HTMLDivElement>;
 
-export const Card = (props: CardProps) => {
-  const { fullWidth, children, ...rest } = props;
+export const Card = (props: PropsWithChildren<CardProps>) => {
+  const {
+    fullWidth = false,
+    hoverEffect = false,
+    clickable = false,
+    shadow = false,
+    children,
+    ...rest
+  } = props;
 
   return (
-    <StyledCard fullWidth={fullWidth} {...rest}>
+    <StyledCard
+      fullWidth={fullWidth}
+      hoverEffect={hoverEffect}
+      clickable={clickable}
+      shadow={shadow}
+      {...rest}
+    >
       {children}
     </StyledCard>
   );

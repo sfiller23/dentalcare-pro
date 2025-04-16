@@ -4,8 +4,9 @@ import { useAuth } from "../context/hooks";
 
 export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const { user, isLoading } = useAuth();
+  console.log(user, "from protected route");
   if (isLoading) return <div>Loading...</div>;
-  if (!user?._id) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/auth/login" replace />;
 
   return children;
 };

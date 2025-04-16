@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AuthLayout from "../layouts/authLayout/AuthLayout";
 import Dashboard from "../pages/app/Dashboard";
 import NotFound from "../pages/app/NotFound";
 import Login from "../pages/auth/Login";
@@ -10,9 +11,10 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         {/* Public */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
+        <Route path="/auth" element={<AuthLayout />}>
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+        </Route>
         {/* Protected routes */}
         <Route
           path="/"
@@ -22,7 +24,6 @@ const AppRouter = () => {
             </ProtectedRoute>
           }
         />
-
         {/* Fallback */}
         <Route path="*" element={<NotFound />} />
       </Routes>

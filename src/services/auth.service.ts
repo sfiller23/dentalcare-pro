@@ -18,9 +18,7 @@ export const login = async (credentials: LoginCredentials): Promise<void> => {
   await api.post("/auth/login", credentials);
 };
 
-export const register = async (
-  credentials: LoginCredentials
-): Promise<void> => {
+export const signUp = async (credentials: LoginCredentials): Promise<void> => {
   await api.post("/auth/register", credentials);
 };
 
