@@ -14,6 +14,7 @@ export interface Colors {
   danger: color;
   sidebarBg: color;
   icon: color;
+  modalBackground: string;
 }
 export interface BorderRadius {
   sm: px;

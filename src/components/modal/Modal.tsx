@@ -1,11 +1,11 @@
 import { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Button } from "../button/Button";
+import { Card } from "../card/Card";
 import { StyledModal } from "./Modal.styles";
 
 type ModalProps = {
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   children: ReactNode;
 };
 
@@ -15,7 +15,7 @@ const Modal = (props: ModalProps) => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape" && onClose) onClose();
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -28,8 +28,9 @@ const Modal = (props: ModalProps) => {
 
   return ReactDOM.createPortal(
     <StyledModal role="dialog" aria-modal="true">
-      {children}
-      <Button onClick={onClose}>Close</Button>
+      <Card spacing={0} shadow>
+        {children}
+      </Card>
     </StyledModal>,
     modalRoot
   );

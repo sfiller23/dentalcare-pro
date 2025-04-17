@@ -14,6 +14,7 @@ export const theme: Theme = {
     danger: "#EF4444", // אדום לשגיאות (לא מופיע כאן, אבל כדאי שיהיה)
     sidebarBg: "#F9FAFB", // רקע הסיידבר
     icon: "#A0AEC0",
+    modalBackground: "rgba(49, 92, 95, 0.8)",
   },
   spacing: (factor: number) => `${factor * 1.2}rem`,
   borderRadius: {
