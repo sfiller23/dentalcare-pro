@@ -18,7 +18,7 @@ export const StyledCard = styled.div<{
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   padding: ${({ theme, spacing }) =>
-    spacing ? theme.spacing(spacing) : theme.spacing(2)};
+    spacing || spacing === 0 ? theme.spacing(spacing) : theme.spacing(2)};
   box-shadow: ${({ shadow }) =>
     shadow &&
     `

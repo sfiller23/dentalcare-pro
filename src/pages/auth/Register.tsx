@@ -9,6 +9,7 @@ import FormGroup from "../../components/form/formGroup/FormGroup";
 import { Input } from "../../components/form/formGroup/input/Input.styles";
 import Typography from "../../components/Typography/Typography";
 import { useAuth } from "../../context/hooks";
+import { fetchMe } from "../../services/auth.service";
 import { FormInfo, RegisterFormData } from "../../types/RegisterFormTypes";
 import {
   capitalizeFirstChar,
@@ -17,7 +18,7 @@ import {
 
 // רכיב
 const Register = () => {
-  const { signUp } = useAuth();
+  const { setUser, signUp } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
@@ -56,7 +57,9 @@ const Register = () => {
     try {
       setError(null);
       await signUp(data.email, data.password);
-      navigate("/");
+      const meObj = await fetchMe();
+      setUser(meObj.user);
+      navigate("/auth/login");
     } catch {
       setError("Invalid email or password.");
     }

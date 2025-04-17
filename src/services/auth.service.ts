@@ -28,8 +28,13 @@ export const logout = async (): Promise<void> => {
 };
 
 // בקשת me – מקבלת את המשתמש המחובר
-export const fetchMe = async (): Promise<User> => {
-  const res = await api.get<User>("/auth/me");
+export const fetchMe = async (): Promise<{
+  user: User;
+  tokenExpiration: string;
+}> => {
+  const res = await api.get<{ user: User; tokenExpiration: string }>(
+    "/auth/me"
+  );
   return res.data;
 };
 

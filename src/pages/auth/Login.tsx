@@ -14,8 +14,8 @@ import { capitalizeFirstChar } from "../../utils/stringManipulation";
 
 // רכיב
 const Login = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
   const {

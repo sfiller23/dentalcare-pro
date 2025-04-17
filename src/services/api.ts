@@ -9,6 +9,7 @@ api.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
     if (error) {
+      console.log(error);
       console.warn(`${error.status} - ${error.message}`);
     }
     return Promise.reject(error);
